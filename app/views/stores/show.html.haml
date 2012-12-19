@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @store.name
+%p
+  %b Description:
+  = @store.description
+%p
+  %b Logo url:
+  = @store.logo_url
+%p
+  %b Location name:
+  = @store.location_name
+
+= link_to 'Edit', edit_store_path(@store)
+\|
+= link_to 'Back', stores_path

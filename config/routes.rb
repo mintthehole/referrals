@@ -1,5 +1,11 @@
 Referrals::Application.routes.draw do
 
+  resources :products
+
+
+  resources :stores
+
+
   ActiveAdmin.routes(self)
 
   devise_for :users
