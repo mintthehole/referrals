@@ -8,5 +8,15 @@ ActiveAdmin.register Product do
     column :updated_at
     default_actions
   end
+
+  form do |f|
+    f.inputs "Enter Product Details" do
+      f.input :name
+      f.input :description
+      f.input :image_url
+      f.input :store
+    end
+    f.buttons
+  end
 end
 
