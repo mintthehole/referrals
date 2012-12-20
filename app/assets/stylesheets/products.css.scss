@@ -1,3 +1,61 @@
-// Place all the styles related to the Products controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.product{
+  background-color: #d8ecff;
+  .myrow{
+    background-color: #d8ecff;
+  }
+}
+
+.rating{
+  margin: 10px auto;
+}
+
+.location{
+  background-color: #DD4B39;
+  border-color: #96271a;
+  border-width: 0px 1px 1px 0px;
+  border-style: solid;
+  padding: 10px 20px;
+  margin: -4px 0px 0px 50px;
+  float: left;
+  color: white;
+  text-shadow: 2px 1px #96271a;
+  font-family: 'Donegal One', serif;
+  font-size: 20px;
+}
+
+.logo{
+  margin: 10px 40px 0px 0px;
+  float: right;
+}
+
+.details-box{
+  padding: 25px 55px ;
+  //float:left;
+  //width: 40%;
+  .name {
+    font-family: 'Donegal One', 'Sanchez', Arial, Helvitica, Verdana;
+    font-size: 24px;
+    color: #222222;
+  }
+  .description{
+    width: 60%;
+    padding: 20px 0px;
+  }
+  .rating{
+    h6 {
+      margin-left: 5px;
+    }
+  }
+}
+
+.rel-product{
+  img{
+    float:left;
+  }
+  .actions{
+    position: relative;
+    top: -50px;
+    right: 10px;
+    float: right;
+  }
+}

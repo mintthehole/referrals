@@ -1,0 +1,24 @@
+.myrow.product
+  .myrow
+    .location
+      = @product.store.location_name 
+    .logo
+      = image_tag(@product.store.logo_url, :width => '256')
+    .clearfix
+  .myrow.details-box
+    .name
+      = @product.name
+    .description
+      = @product.description
+    .myrow.rating
+      %h6 Rate this product
+      - 5.times do
+        = image_tag("star.png"  , :width => '30')
+        &nbsp;
+
+.row.related-products
+  - @product.related_products.each do |rp|
+    .rel-product
+      = image_tag(rp.image_url, :width => "100%")
+      .actions
+        = link_to 'Contact Me', '#', :class => ["btn", "btn-success"]

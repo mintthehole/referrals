@@ -1,10 +1,12 @@
 
-@import "bootstrap";
-@import "bootstrap-responsive";
-
 * {
   font-family: 'Sanchez', Arial, Helvitica, Verdana;
+  margin: 0px;
+  padding: 0px;
 }
+
+@import "bootstrap";
+//@import "bootstrap-responsive";
 
 body .content-wrapper {
   margin-top: 60px;
@@ -49,11 +51,6 @@ body .content-wrapper {
     }
     
   }    
-
-.product { 
-  top: 120px;
-  position: absolute;
-}
 
 .ribbon-green {
   font: bold 15px Sans-Serif;

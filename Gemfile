@@ -18,6 +18,7 @@ gem 'activeadmin'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'capistrano'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
 end
