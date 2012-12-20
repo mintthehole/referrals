@@ -1,0 +1,20 @@
+%span.ribbon-green
+	= @store.name 
+%span.thumb-container
+	%span.thumbnail.logo
+		= render_image(@store.logo_url, nil)
+<br/>
+<br/>
+.product
+	- unless @product.nil?
+		= @product.name
+		%span.thumbnail.product
+			= render_image(@product.image_url, nil)
+		<br/>
+		- related_products = @product.related_products
+		- related_products.each do |pdt|
+			= pdt.name
+			= render_image(pdt.image_url, "152x240")
+			<br/>
+	- else
+		No Product Found
