@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(:version => 20121219121830) do
     t.datetime "updated_at",                                :null => false
   end
 
+  create_table "product_mappings", :force => true do |t|
+    t.integer  "product_id",         :precision => 38, :scale => 0
+    t.integer  "related_product_id", :precision => 38, :scale => 0
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -50,13 +57,6 @@ ActiveRecord::Schema.define(:version => 20121219121830) do
     t.integer  "store_id",    :precision => 38, :scale => 0
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
-  end
-
-  create_table "related_products", :force => true do |t|
-    t.integer  "product_id",     :precision => 38, :scale => 0
-    t.integer  "rel_product_id", :precision => 38, :scale => 0
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "stores", :force => true do |t|
