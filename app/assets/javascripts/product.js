@@ -3,13 +3,24 @@ $('#form_dialog').live('click', function(event) {
 		// alert('hi');
 	      // $(  ).dialog({
 	var x;
+	$('#dialog_form').dialog({
+            // autoOpen: false,
+            // height: screen.height *30 /100,
+            title: "Enter Your Phone Number",
+            // width: screen.width *30 /100,
+            modal: true,
+            resizable: false,
+            position: ["center", "center"],
+            buttons: {
+                Submit: function() {
+                	 $( this ).dialog( "close" );
+                },
+                Cancel: function() {
+                	 $( this ).dialog( "close" );
+                }                
+            }
+        });
 
-	var name=prompt("Please enter Mobile Number",'');
-
-	if (name!=null)
-	{
-	x="Hello " + name + "! How are you today?";
-	document.getElementById("demo").innerHTML=x;
-	}
+	// var name=prompt("Please enter Mobile Number",'');
 	return false;
 });
