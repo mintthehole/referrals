@@ -2,10 +2,10 @@
   .myrow
     .location
       = @product.store.location_name 
-    .logo
-      = image_tag(@product.store.logo_url, :width => '256')
     .clearfix
   .myrow.details-box
+    .logo
+      = image_tag(@product.store.logo_url, :width => '256')
     .name
       = @product.name
     .description
