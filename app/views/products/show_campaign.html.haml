@@ -13,7 +13,7 @@
     #star
       .myrow.rating
         %h6 Rate this product
-        .rateit.bigstars{"data-rateit-starheight" => "32", "data-rateit-starwidth" => "32"}           
+        .rateit.bigstars{"data-rateit-starheight" => "32", "data-rateit-starwidth" => "32", "data-rateit-resetable" => "false" }           
 .row.related-products
   - @product.related_products.each do |rp|
     .rel-product
