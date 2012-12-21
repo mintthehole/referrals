@@ -1,4 +1,8 @@
 
+/*
+*= require jquery.ui.all
+*/
+
 * {
   font-family: 'Sanchez', Arial, Helvitica, Verdana;
   margin: 0px;
@@ -77,3 +81,15 @@ body .content-wrapper {
 
 }
 
+
+.ui-dialog .ui-dialog-titlebar {
+    border: 0;
+    padding: .5em 1em;
+    background: #DD4B39;
+    color: white;
+    overflow: auto;
+    zoom: 1;
+}
+
+.ui-dialog .ui-dialog-buttonset {
+}
