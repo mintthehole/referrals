@@ -13,6 +13,8 @@ end
 gem 'activerecord-oracle_enhanced-adapter'
 gem 'ruby-oci8'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-ui-themes'
 gem 'devise'
 gem 'activeadmin'
 

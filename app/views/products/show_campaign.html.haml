@@ -21,4 +21,5 @@
     .rel-product
       = image_tag(rp.image_url, :width => "100%")
       .actions
-        = link_to 'Contact Me', '#', :class => ["btn", "btn-success"]
+        = link_to "Call Me", '', :id => "form_dialog", :class => [:btn, :"btn-success"]
+      #dialog_form
