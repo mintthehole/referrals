@@ -21,6 +21,10 @@
     .rel-product
       = image_tag(rp.image_url, :width => "100%")
       .actions
-        = link_to "Call Me", '', :id => "form_dialog", :class => [:btn, :"btn-success"]
-      #dialog_form{:style => 'text-align: center; margin-top: 5px'}
-        %input(type="text" name="number" value="")
+        = link_to "Call Me", '', :id => "form_dialog",  :class => [:btn, :"btn-success"]
+      #dialog_form{:style => 'text-align: center; margin-top: 5px;display:none'}
+        %input{:product_id =>@product.id , :parent_product_id => rp.id}(type="text" name="number" value="" id="info")
+        %hidden_field{:id=>"product_id", :value=>rp.id}
+        %span.loading{:style => 'display:none'}
+          = image_tag("loading.gif")
+%span{:id=>"parent_product_id", :value=>@product.id}
