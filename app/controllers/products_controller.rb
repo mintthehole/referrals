@@ -11,6 +11,5 @@ class ProductsController < InheritedResources::Base
 	    format.xml { render :xml =>lead, :status => :ok }
     	format.json { render :json => lead, :status => :ok }
     end
-  	# render :nothing => true
   end
 end

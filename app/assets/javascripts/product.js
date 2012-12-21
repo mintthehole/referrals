@@ -1,8 +1,7 @@
 $('#form_dialog').live('click', function(event) {
 	event.preventDefault();
-		// alert('hi');
-	      // $(  ).dialog({
-	var x;
+  	var parent_product_id1 = $(this).attr('parent_product_id');
+	var product_id1 = $(this).attr('product_id');
 	$('#dialog_form').dialog({
             // autoOpen: false,
             // height: screen.height *30 /100,
@@ -15,10 +14,7 @@ $('#form_dialog').live('click', function(event) {
                 Submit: function() {
                 	 $('.loading').show();
                 	 var info = $('#info').val();
-                	 var parent_product_id1 = $('#parent_product_id').val();
-                	 var product_id1 = $('#product_id').val();
-
-                	 $.post("/customer_lead", { info: info,product_id : product_id1, parent_product_id: parent_product_id1 },
+                	 $.post("/customer_lead", { info: info, product_id : product_id1, parent_product_id: parent_product_id1 },
 					    function(data){
 	                	 	$('.loading').hide();
 	                	 	$('#info').val('');
