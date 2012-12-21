@@ -10,12 +10,10 @@
       = @product.name
     .description
       = @product.description
-    .myrow.rating
-      %h6 Rate this product
-      - 5.times do
-        = image_tag("star.png"  , :width => '30')
-        &nbsp;
-
+    #star
+      .myrow.rating
+        %h6 Rate this product
+        .rateit.bigstars{"data-rateit-starheight" => "32", "data-rateit-starwidth" => "32"}           
 .row.related-products
   - @product.related_products.each do |rp|
     .rel-product
