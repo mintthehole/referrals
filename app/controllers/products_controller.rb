@@ -1,3 +1,4 @@
+
 class ProductsController < InheritedResources::Base
   
   def show_campaign
@@ -7,6 +8,13 @@ class ProductsController < InheritedResources::Base
   def customer_lead
   	lead = CustomerLead.build(params)
   	lead.save
+    parent_product = Product.find_by_id(params[:parent_product_id])
+    SmsApi.send(params[:info],"User Prototype No:#{params[:info]} Product:#{parent_product.name.truncate(32)}")
+    
+    SmsApi.send(parent_product.phone_no,"#{parent_product.name} Prototype No:#{params[:info]}")
+    product = Product.find_by_id(params[:product_id])
+    SmsApi.send(product.phone_no,"#{product.name} Prototype No:#{params[:info]}")
+
   	respond_to do |format|
 	    format.xml { render :xml =>lead, :status => :ok }
     	format.json { render :json => lead, :status => :ok }

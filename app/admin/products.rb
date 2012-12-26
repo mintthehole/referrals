@@ -14,6 +14,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :description
       f.input :image_url
+      f.input :phone_no
       f.input :store
     end
     f.buttons
