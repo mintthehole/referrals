@@ -7,5 +7,4 @@ class Product < ActiveRecord::Base
                        :dependent => :destroy
 
   has_many :related_products, :through => :links
-
 end

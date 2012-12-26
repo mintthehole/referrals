@@ -2,20 +2,18 @@
   .myrow
     .location
       = @product.store.location_name 
-    .logo
-      = image_tag(@product.store.logo_url, :width => '256')
     .clearfix
   .myrow.details-box
+    .logo
+      = image_tag(@product.store.logo_url, :width => '256')
     .name
       = @product.name
     .description
       = @product.description
-    .myrow.rating
-      %h6 Rate this product
-      - 5.times do
-        = image_tag("star.png"  , :width => '30')
-        &nbsp;
-
+    #star
+      .myrow.rating
+        %h6 Rate this product
+        .rateit.bigstars{"data-rateit-starheight" => "32", "data-rateit-starwidth" => "32", "data-rateit-resetable" => "false" }           
 .row.related-products
   - @product.related_products.each do |rp|
     .rel-product
