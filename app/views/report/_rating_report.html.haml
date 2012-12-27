@@ -1,0 +1,26 @@
+Business :  
+= @product.name rescue ""
+%br
+Average Rating : 
+= @ratings_avg.to_s rescue '0'
+%br
+  - unless @ratings.empty?
+    .row
+      .span12
+        %div.well  
+          %table.table.table-condensed
+            %thead
+              %tr
+                %th Customer 
+                %th Rate
+                %th Date/Time
+            %tbody
+              - @ratings.each_with_index do |rate,index|
+                %tr
+                  %td
+                    = "Customer #{index+1}"
+                  %td
+                    = rate.rating
+                  %td
+                    = rate.created_at.strftime("%d %b %y %H:%M %p")
+

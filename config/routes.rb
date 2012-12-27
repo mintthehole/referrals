@@ -64,6 +64,8 @@ Referrals::Application.routes.draw do
   match '/report/call_me' => 'report#call_me'
   post '/customer_lead' => 'products#customer_lead'
   post '/rate_product' => 'products#feedback'
+  post 'call_me_report' => 'report#call_me_report'
+  post 'rating_report' => 'report#rating_report'
   resources :products, :only => [:show] do
     post :rate, :on => :member
   end

@@ -47,3 +47,20 @@ $('#rateit5').live('over', function() {
                         }, "json");        
     }
 });
+
+$('#rating').live('submit', function(event) {
+    event.preventDefault();
+    $.post("/rating_report", $(this).serialize(),
+                        function(data){
+                            $('#rating_result').html(data);
+                        }, "html");
+});
+
+
+$('#call_me').live('submit', function(event) {
+    event.preventDefault();
+    $.post("/call_me_report", $(this).serialize(),
+                        function(data){
+                            $('#call_me_result').html(data);
+                        }, "html");
+});

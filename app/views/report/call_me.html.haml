@@ -1,1 +1,15 @@
 %h4 Call Me Report
+%div{:style => 'margin: 0px;  padding: 2px 10px;'}
+	= form_for 'call_me_report', :html => {:id => "call_me", :class => :'form-horizontal'} do |f|
+		%h5
+			From Business  
+			%br
+			= f.select :from_product_id, options_for_select(build_product_options, params[:product_id]), {}, :class => "validate[required]"
+			%br
+			To Business
+			%br
+			= f.select :to_product_id, options_for_select(build_product_options, params[:product_id]), {}, :class => "validate[required]"
+			%br 
+			%br
+			= f.submit "Report", :class => [:btn, :'btn-primary']
+	#call_me_result

@@ -1,0 +1,25 @@
+%br
+  - unless @customer_leads.empty?
+    .row
+      .span12
+        %div.well  
+          %table.table.table-condensed
+            %thead
+              %tr
+                %th Phone 
+                %th From Business
+                %th To Business
+                %th Date/Time
+            %tbody
+              - @customer_leads.each do |customer|
+                %tr
+                  %td
+                    = customer.info
+                  %td
+                    = Product.find_by_id(customer.parent_product_id).name rescue ''
+                  %td
+                    = Product.find_by_id(customer.product_id).name rescue ''
+                  %td
+                    = customer.created_at.strftime("%d %b %y %H:%M %p")
+
+  

@@ -10,6 +10,20 @@ class CustomerLead < ActiveRecord::Base
   def self.build(params)
   	hash = {:info => params[:info], 
   			:parent_product_id => params[:parent_product_id], :product_id => params[:product_id]}
-	new(hash)  	
+	 new(hash)  	
   end
+
+  def self.report(from,to)
+    conditions = ['info is not null']
+    unless from.blank?
+      conditions[0] << ' AND parent_product_id = ? '
+      conditions << from
+    end
+    unless to.blank?
+      conditions[0] << ' AND product_id = ? '
+      conditions << to
+    end
+    self.find(:all, :conditions => conditions, :order => 'id desc')
+  end
+
 end

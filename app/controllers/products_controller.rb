@@ -1,9 +1,5 @@
 class ProductsController < ApplicationController
   
-  def index
-
-  end
-
   def show_campaign
     @product = Product.find_by_id(params[:product_id])
   end
@@ -32,9 +28,5 @@ class ProductsController < ApplicationController
       format.json { render :json => fb, :status => :ok }
     end
   end
-  
-  def report
-
-  end
-
-end
+ 
+ end
