@@ -3,8 +3,8 @@ require "net/http"
 class SmsApi
 	def self.send(recipient,message)
 	  uri = URI("http://ubaid.tk/sms/sms.aspx")
-	  params = { uid: '9985098108',
-	             pwd: 'whoisit1',
+	  params = { uid: '9738733960',
+	             pwd: 'P9333B',
 	             phone: recipient,
 	             msg: message,
 	             provider: 'way2sms'

@@ -10,10 +10,8 @@ class ProductsController < ApplicationController
     parent_product = Product.find_by_id(params[:parent_product_id])
     product = Product.find_by_id(params[:product_id])
     SmsApi.send(params[:info],"User Prototype No:#{params[:info]} Product:#{product.name.truncate(32)} Time:#{Time.zone.now}")
-    
-    SmsApi.send(parent_product.phone_no,"#{parent_product.name} Prototype No:#{params[:info]} Time:#{Time.zone.now}")
-    
-    SmsApi.send(product.phone_no,"#{product.name} Prototype No:#{params[:info]} Time:#{Time.zone.now}")
+    SmsApi.send(parent_product.phone_no,"#{parent_product.name.truncate(32)} Prototype No:#{params[:info]} Time:#{Time.zone.now}")
+    SmsApi.send(product.phone_no,"#{product.name.truncate(32)} Prototype No:#{params[:info]} Time:#{Time.zone.now}")
 
   	respond_to do |format|
 	    format.xml { render :xml =>lead, :status => :ok }
