@@ -19,4 +19,13 @@ class ProductsController < ApplicationController
     	format.json { render :json => lead, :status => :ok }
     end
   end
+
+  def feedback
+    fb = Feedback.build(params)
+    fb.save
+    respond_to do |format|
+      format.xml { render :xml =>fb, :status => :ok }
+      format.json { render :json => fb, :status => :ok }
+    end
+  end
 end

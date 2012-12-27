@@ -34,3 +34,16 @@ $('#form_dialog').live('click', function(event) {
 	// var name=prompt("Please enter Mobile Number",'');
 	return false;
 });
+
+$('#rateit5').live('over', function() {
+    var old = parseFloat($('#value_rate').val());
+    var new_value =  parseFloat($(this).rateit('value'));
+    var product_id = $('#value_rate').attr('product_id');
+    if (new_value != old)
+    {
+        $('#value_rate').val(new_value);
+        $.post("/rate_product", {product_id: product_id, rating: new_value },
+                        function(data){
+                        }, "json");        
+    }
+});

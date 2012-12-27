@@ -60,6 +60,11 @@ Referrals::Application.routes.draw do
   root :to => 'home#index'
   match '/campaigns/:product_id' => 'products#show_campaign'
   post '/customer_lead' => 'products#customer_lead'
+  post '/rate_product' => 'products#feedback'
+  resources :products, :only => [:show] do
+    post :rate, :on => :member
+  end
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
