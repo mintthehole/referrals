@@ -58,7 +58,10 @@ Referrals::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'home#index'
+  match '/report' => 'report#report'
   match '/campaigns/:product_id' => 'products#show_campaign'
+  match '/report/ratings' => 'report#ratings'
+  match '/report/call_me' => 'report#call_me'
   post '/customer_lead' => 'products#customer_lead'
   post '/rate_product' => 'products#feedback'
   resources :products, :only => [:show] do

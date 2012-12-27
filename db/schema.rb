@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226063403) do
+ActiveRecord::Schema.define(:version => 20121227072636) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",                                  :null => false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20121226063403) do
   end
 
   create_table "feedbacks", :force => true do |t|
-    t.integer  "rating",     :precision => 38, :scale => 0
+    t.decimal  "rating",     :precision => 2,  :scale => 2
     t.integer  "product_id", :precision => 38, :scale => 0
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
