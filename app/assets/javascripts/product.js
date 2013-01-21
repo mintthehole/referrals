@@ -35,6 +35,63 @@ $('#form_dialog').live('click', function(event) {
 	return false;
 });
 
+
+$('#email_me').live('click', function(event) {
+    event.preventDefault();
+    var jsonObj = [];
+    var hash = $('#pollo_abc').val();
+    var pol = JSON.parse(hash);
+    var i =0;
+    var product_id = $(this).attr('product_id');
+    for (i= 0;i<pol.length;i++)
+    {
+        jsonObj.push({item_id: pol[i], quantity: $("#quantity_"+pol[i]).val() });
+    }
+    $('#dialog_form').dialog({
+            // autoOpen: false,
+            // height: screen.height *30 /100,
+            title: "Enter Your Email Address",
+            // width: screen.width *30 /100,
+            modal: true,
+            resizable: false,
+            position: ["center", "center"],
+            buttons: {
+                Submit: function() {
+                     
+                     var info = $('#info').val();
+                      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(info))  
+                      {  
+                        $('.loading').show();
+                         $.ajax({
+                            url: '/email_me?product_id='+product_id+'&email='+info,
+                            type: 'POST',
+                            dataType: 'html',
+                            data:JSON.stringify(jsonObj),
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (data) {
+                                $('.loading').hide();
+                                $('#info').val('');
+                                $('#dialog_form').dialog( "close" );
+                            }
+                        });
+                    }
+                    else{
+                        $('#info').val(info+' - Email id is not valid ');
+                    }
+
+                },
+                Cancel: function() {
+                    $('.loading').hide();
+                    $('#info').val('');
+                     $( this ).dialog( "close" );
+                }                
+            }
+        });
+
+    // var name=prompt("Please enter Mobile Number",'');
+    return false;
+});
+
 $('#rateit5').live('over', function() {
     var old = parseFloat($('#value_rate').val());
     var new_value =  parseFloat($(this).rateit('value'));
@@ -65,14 +122,25 @@ $('#call_me').live('submit', function(event) {
                         }, "html");
 });
 
+$('#email_me').live('submit', function(event) {
+    event.preventDefault();
+    $.post("/call_me_report", $(this).serialize(),
+                        function(data){
+                            $('#call_me_result').html(data);
+                        }, "html");
+});
+
+
 $('.quantity').live('blur', function(event) {
         var items = $(this).attr('item_ids');
         var quan = parseFloat($(this).val());
         var amount_id = "amount_" + $(this).attr('item_id');
+        var tax = parseFloat($(this).attr('tax'));
         var sum = parseFloat($('#total').val());
         var old_value = parseFloat($('#'+amount_id).val());
         var price = parseFloat($(this).attr('price'));
-        var new_sum = sum + (quan * price) - old_value
+        var amt = quan * price
+        var new_sum = sum + (amt + amt * tax/100) - old_value
         $('#'+amount_id).val(quan * price);
         if (new_sum != sum){
             $('#total').val(new_sum);
@@ -82,8 +150,25 @@ $('.quantity').live('blur', function(event) {
 
 $('#checkout').live('click', function(event) {
     event.preventDefault();
+    var jsonObj = [];
     var hash = $('#pollo_abc').val();
     var pol = JSON.parse(hash);
-    alert(pol);
+    var i =0;
+    var product_id = $(this).attr('product_id');
+    for (i= 0;i<pol.length;i++)
+    {
+        jsonObj.push({item_id: pol[i], quantity: $("#quantity_"+pol[i]).val() });
+    }
+    $.ajax({
+        url: '/item_checkout?product_id='+product_id,
+        type: 'POST',
+        dataType: 'html',
+        data:JSON.stringify(jsonObj),
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+             $('.menu_area').html(data);
+        }
+    });
+    
 });
 

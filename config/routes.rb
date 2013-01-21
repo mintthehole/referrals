@@ -67,6 +67,8 @@ Referrals::Application.routes.draw do
   post '/rate_product' => 'products#feedback'
   post 'call_me_report' => 'report#call_me_report'
   post 'rating_report' => 'report#rating_report'
+  post 'item_checkout' => 'products#item_checkout'
+post 'email_me' => 'products#email_me'
   resources :products, :only => [:show] do
     post :rate, :on => :member
   end

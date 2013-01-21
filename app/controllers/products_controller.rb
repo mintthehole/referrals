@@ -8,7 +8,21 @@ class ProductsController < ApplicationController
 
   def show_menu
     @product = Product.find_by_id(params[:product_id])
-    @items = Item.find(:all, :conditions => ['product_id = ?', @product.id], :order => 'priority').paginate(:per_page => 3, :page =>params[:page])
+    @items = Item.find(:all, :conditions => ['product_id = ?', @product.id], :order => 'priority').paginate(:per_page => 5, :page =>params[:page])
+  end
+
+  def item_checkout
+    @check_out_hash = params["_json"]
+    @product = Product.find_by_id(params[:product_id])
+    @items = []
+    @quantities ={}
+    @check_out_hash.each do |item|
+      if item["quantity"].to_i != 0
+        @items << Item.find_by_id(item["item_id"].to_i)
+        @quantities[item["item_id"].to_i] = item["quantity"].to_i
+      end
+    end
+    render :partial => 'item_checkout'
   end
 
   def customer_lead
@@ -34,5 +48,23 @@ class ProductsController < ApplicationController
       format.json { render :json => fb, :status => :ok }
     end
   end
- 
+  
+  def email_me
+    @check_out_hash = params["_json"]
+    @product = Product.find_by_id(params[:product_id])
+    @items = []
+    @quantities ={}
+    @check_out_hash.each do |item|
+      if item["quantity"].to_i != 0
+        @items << Item.find_by_id(item["item_id"].to_i)
+        @quantities[item["item_id"].to_i] = item["quantity"].to_i
+      end
+    end
+    BillMailer.send_mail(params[:email],@product, @items, @quantities).deliver
+    respond_to do |format|
+      format.xml { render :xml =>"true", :status => :ok }
+      format.json { render :json => "true", :status => :ok }
+    end
+  end
+
  end

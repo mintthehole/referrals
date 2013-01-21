@@ -16,9 +16,6 @@ ActiveAdmin.register Item do
       f.input :price
       f.input :priority
       f.input :promote
-      f.input :sales_tax
-      f.input :service_tax
-      f.input :vat
       f.input :product_id
     end
     f.buttons

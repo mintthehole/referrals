@@ -17,7 +17,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-ui-themes'
 gem 'devise'
 gem 'activeadmin'
-gem "will_paginate", "~> 3.0.4"
+gem "will_paginate", :git => "https://github.com/p7r/will_paginate.git", :branch => "rails3"
 
 group :test, :development do
   gem 'rspec-rails'

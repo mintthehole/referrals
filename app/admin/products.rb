@@ -15,6 +15,9 @@ ActiveAdmin.register Product do
       f.input :description
       f.input :image_url
       f.input :phone_no
+      f.input :sales_tax
+      f.input :service_tax
+      f.input :vat
       f.input :store
     end
     f.buttons

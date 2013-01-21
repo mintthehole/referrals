@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :image_url, :name, :store_id, :phone_no
+  attr_accessible :description, :image_url, :name, :store_id, :phone_no, :sales_tax, :vat, :service_tax
   
 
   belongs_to :store
