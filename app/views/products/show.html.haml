@@ -1,18 +1,14 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @product.name
-%p
-  %b Description:
-  = @product.description
-%p
-  %b Image url:
-  = @product.image_url
-%p
-  %b Store:
-  = @product.store_id
-
-= link_to 'Edit', edit_product_path(@product)
-\|
-= link_to 'Back', products_path
+.myrow.product
+  .myrow
+    .location
+      = @product.store.location_name 
+    .clearfix
+  .myrow.details-box
+    .logo
+      = image_tag(@product.store.logo_url, :width => '256')
+    .name
+      = @product.name
+%h3{:style=>"padding: 20px 70px;"}
+  = link_to "Menu", "/menu/#{@product.id}"
+  %br
+  = link_to "Feed Back", "/campaigns/#{@product.id}"
