@@ -18,8 +18,12 @@ body .content-wrapper {
 }
 
 ::-webkit-scrollbar {
-  width: 20px;
-  background: yellow;
+  width: 12px;
+  background: #BDBDE4;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #E5EBE5;
 }
 
 
