@@ -1,0 +1,56 @@
+.myrow.product
+  .myrow
+    .location
+      = @product.store.location_name 
+    .clearfix
+  .myrow.details-box
+    .logo
+      = image_tag(@product.store.logo_url, :width => '256')
+    .name
+      = @product.name
+    Select From the Menu 
+    .description_menu
+      = will_paginate(@items)
+      .pol{:style => 'width:600px;'}
+        %div
+          %table.table.table
+            %tr
+              %th Item(Description)
+              %th Price
+              %th Quantity
+              %th Amount
+            - @items.each do |item|
+              %tr
+                %td
+                  = "#{item.name} (#{item.description})" rescue "-"
+                %td
+                  = item.price.to_f
+                %td
+                  %input{:style => 'width:18px;', :item_id=>"#{item.id}", :class =>"quantity", :price => "#{item.price.to_f}", :item_ids => "#{@items.collect(&:id)}"}(type="text" name="number" value=0 ) 
+                %td
+                  %input{:style => 'width:30px;', :id=>"amount_#{item.id}", :class =>"amount"}(type="text" name="number" value=0  readonly = true)
+    #star
+      .myrow.rating
+        %span{:style => 'width:15%'} 
+          - hash = @items.collect(&:id)
+          = hidden_field :pollo,:abc, :value => hash
+          = link_to "Check the Orders" , '', :id => 'checkout', :class => [:btn, :"btn-success"]
+          %b
+            = "(Vat- #{1}%"
+            = "Sales Tax - #{2}%"
+            = "Service Tax -#{0}%)"
+            Total :
+            %input{:style => 'width:35px;', :id=>"total"}(type="text" name="number" value=0  readonly = true) 
+    %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
+
+.row.related-products
+  - @product.related_products.each do |rp|
+    .rel-product
+      = image_tag(rp.image_url, :width => "100%")
+      .actions
+        = link_to "Call Me", '', :id => "form_dialog", :product_id => rp.id , :parent_product_id => @product.id, :class => [:btn, :"btn-success"]
+#dialog_form{:style => 'text-align: center; margin-top: 5px;display:none'}
+  %input(type="text" name="number" value="" id="info")
+  %span.loading{:style => 'display:none'}
+    = image_tag("loading.gif")
+

@@ -60,6 +60,7 @@ Referrals::Application.routes.draw do
   root :to => 'home#index'
   match '/report' => 'report#report'
   match '/campaigns/:product_id' => 'products#show_campaign'
+  match '/menu/:product_id' => 'products#show_menu'
   match '/report/ratings' => 'report#ratings'
   match '/report/call_me' => 'report#call_me'
   post '/customer_lead' => 'products#customer_lead'

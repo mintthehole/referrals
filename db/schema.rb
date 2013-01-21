@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227072636) do
+ActiveRecord::Schema.define(:version => 20130119080259) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",                                  :null => false
@@ -37,10 +37,25 @@ ActiveRecord::Schema.define(:version => 20121227072636) do
   end
 
   create_table "feedbacks", :force => true do |t|
-    t.decimal  "rating",     :precision => 2,  :scale => 2
+    t.decimal  "rating",     :precision => 4,  :scale => 2
     t.integer  "product_id", :precision => 38, :scale => 0
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.decimal  "price"
+    t.integer  "priority",    :precision => 38, :scale => 0
+    t.decimal  "avg_rating"
+    t.decimal  "vat"
+    t.decimal  "sales_tax"
+    t.decimal  "service_tax"
+    t.string   "promote"
+    t.integer  "product_id",  :precision => 38, :scale => 0
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "product_mappings", :force => true do |t|

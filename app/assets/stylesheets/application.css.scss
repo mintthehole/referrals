@@ -17,6 +17,11 @@ body .content-wrapper {
   margin-top: 60px;
 }
 
+::-webkit-scrollbar {
+  width: 20px;
+  background: yellow;
+}
+
 
 #error_explanation{
   background-color: #f2dede;

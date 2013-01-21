@@ -64,3 +64,32 @@ $('#call_me').live('submit', function(event) {
                             $('#call_me_result').html(data);
                         }, "html");
 });
+
+$('.quantity').live('blur', function(event) {
+    var count = parseInt($('#count').val());
+    if (count == 0){
+        var items = $(this).attr('item_ids');
+        var quan = parseFloat($(this).val());
+        var amount_id = "amount_" + $(this).attr('item_id');
+        var sum = parseFloat($('#total').val());
+        var old_value = parseFloat($('#'+amount_id).val());
+        var price = parseFloat($(this).attr('price'));
+        var new_sum = sum + (quan * price) - old_value
+        $('#'+amount_id).val(quan * price);
+        if (new_sum != sum){
+            $('#total').val(new_sum);
+        }
+        $('#count').val(1);
+    }
+    else{
+        $('#count').val(0);
+    }
+});
+
+$('#checkout').live('click', function(event) {
+    event.preventDefault();
+    var hash = $('#pollo_abc').val();
+    var pol = JSON.parse(hash);
+    alert(pol);
+});
+

@@ -1,7 +1,14 @@
+require 'will_paginate/array'
+
 class ProductsController < ApplicationController
   
   def show_campaign
     @product = Product.find_by_id(params[:product_id])
+  end
+
+  def show_menu
+    @product = Product.find_by_id(params[:product_id])
+    @items = Item.find(:all, :conditions => ['product_id = ?', @product.id], :order => 'priority').paginate(:per_page => 3, :page =>params[:page])
   end
 
   def customer_lead
