@@ -8,7 +8,20 @@
       = image_tag(@product.store.logo_url, :width => '256')
     .name
       = @product.name
-%h3{:style=>"padding: 20px 70px;"}
-  = link_to "Menu", "/menu/#{@product.id}"
-  %br
-  = link_to "Feed Back", "/campaigns/#{@product.id}"
+.div{:style=>"padding: 20px 70px;"}
+  .span-24
+    .span-2.menu-button.menu-color
+      .menu-icon
+        = link_to "/menu/#{@product.id}" do
+          = image_tag 'menu_icon.jpg', :size => "80x82"
+      .menu-text
+        Menu
+    .span-2.menu-button.menu-color
+      .menu-icon
+        = link_to "/campaigns/#{@product.id}" do
+          = image_tag 'Feedback Icon.jpg', :size => "80x82"
+      .menu-text
+        FeedBack
+
+
+  
