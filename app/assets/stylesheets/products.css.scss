@@ -72,7 +72,7 @@ ul{border:0; margin:0; padding:0;}
 
 #pagination_referrals{
   .pagination{
-    height: 14px;
+    height: 18px;
   }
 }
 
@@ -82,10 +82,10 @@ font-size:21px;
 list-style:none;
 }
 #pagination_referrals a{
-border:solid 1px #DDDDDD;
+border:solid 1px #360505;
 font-weight:bold;
 font-size:22px;
-margin-right:14px;
+margin-right:22px;
 }
 #pagination_referrals .previous_page,
 #pagination_referrals .current,
@@ -95,7 +95,7 @@ color:#666666;
 display:block;
 float:left;
 font-weight:bold;
-padding:2px 10px;
+padding:5px 12px;
 }
 #pagination_referrals .next a,
 #pagination_referrals .previous a {
@@ -107,18 +107,18 @@ color:white;
 font-weight:bold;
 display:block;
 float:left;
-padding:2px 10px;
+padding:5px 12px;
 }
 #pagination_referrals a:link,
 #pagination_referrals a:visited {
 color:green;
 display:block;
 float:left;
-padding:2px 10px;
+padding:5px 12px;
 text-decoration:none;
 }
 #pagination_referrals a:hover{
-border:solid 1px #666666;
+border:solid 1px white;
 }
 
 
@@ -141,3 +141,7 @@ border:solid 1px #666666;
   color: #000;
   font-weight: bold;
 }
+
+
+
+

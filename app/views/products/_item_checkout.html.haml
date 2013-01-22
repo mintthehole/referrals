@@ -3,16 +3,23 @@ Selected Menu
 .description
   .pol{:style => 'width:600px;'}
     %div
-      %table.table.table
+      %table.table
         %tr
-          %th Item(Description)
-          %th Price
-          %th Quantity
-          %th Amount
+          %th 
+            .name Item
+            (Description)
+          %th
+            .name Price
+          %th 
+            .name No
+          %th 
+            .name Amount
         - @items.each do |item|
           %tr
             %td
-              = "#{item.name} (#{item.description})" rescue "-"
+              .name 
+                = item.name
+              = item.description
             %td
               = item.price.to_f
             %td
@@ -20,24 +27,24 @@ Selected Menu
             %td
               %input{:style => 'width:50px;', :id=>"amount_#{item.id}", :class =>"amount", :value => @quantities[item.id] * item.price.to_f }(type="text" name="number" readonly = true)
             - sum = sum + (@quantities[item.id] * item.price.to_f)
-
+  .pol{:style => 'width:560px;'}
     - hash = @items.collect(&:id)
     = hidden_field :pollo,:abc, :value => hash
     = "(Vat- #{@product.vat.to_f}%"
     = "S Tax - #{@product.sales_tax.to_f}%"
     = "Ser Tax -#{@product.service_tax.to_f}%)"
-    %tax{:style => 'float:right;'}
+    %tax_div{:style => 'float:right;margin-left:-20px;'}
       Tax :
       - tax = sum *(@product.vat.to_f + @product.sales_tax.to_f + @product.service_tax.to_f)/100
       - total = sum + tax
       %input{:style => 'width:60px;text-align:right;', :id=>"tax", :value => tax}(type="text" name="number" readonly = true) 
     %br
     %br
-    .pol{:style => 'width:600px;padding-top:10px;'}
+    .pol{:style => 'width:560px;padding-top:10px;'}
       = link_to "Email the Bill" , '', :id => 'email_me', :class => [:btn, :"btn-success"],:product_id => @product.id
       = link_to "Cancel" , '', :id => 'cancel', :class => [:btn, :"btn-success"]  
       %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
-      %toatl{:style => 'float:right;'}
+      %tax_div{:style => 'float:right;margin-left:-20px;'}
         Total :
         %input{:style => 'width:60px;display:none;', :id=>"sum", :value => sum}(type="text" name="number" readonly = true)        
         %input{:style => 'width:60px;text-align:right;', :id=>"total", :value => total}(type="text" name="number" value=0  readonly = true)  

@@ -6,7 +6,7 @@
   .myrow.details-box
     .logo
       = link_to @product do
-        = image_tag @product.store.logo_url, :width => '256'
+        = image_tag @product.store.logo_url, :size => "204x100"
     .name
       = @product.name
     .menu_area
@@ -16,38 +16,45 @@
           #pagination_referrals
             = will_paginate(@items)
           %div
-            %table.table.table
+            %table.table.table-no_bordered
               %tr
-                %th Item(Description)
-                %th Price
-                %th Quantity
-                %th Amount
+                %th 
+                  .name Item
+                  (Description)
+                %th
+                  .name Price
+                %th 
+                  .name No
+                %th 
+                  .name Amount
               - @items.each do |item|
                 %tr
                   %td
-                    = "#{item.name} (#{item.description})" rescue "-"
+                    .name
+                      = item.name 
+                    = item.description
                   %td
                     = item.price.to_f
                   %td
                     %input{:style => 'width:38px;text-align:right;', :item_id=>"#{item.id}", :id => "quantity_#{item.id}",:class =>"quantity", :price => "#{item.price.to_f}", :item_ids => "#{@items.collect(&:id)}", :tax => @product.vat.to_f+@product.service_tax.to_f+@product.sales_tax.to_f }(type="text" name="number" value=0 ) 
                   %td
                     %input{:style => 'width:60px;text-align:right;', :id=>"amount_#{item.id}", :class =>"amount"}(type="text" name="number" value=0  readonly = true)
-
+        .bottom_menu{:style => 'width:560px;'}
           - hash = @items.collect(&:id)
           = hidden_field :pollo,:abc, :value => hash
 
           = "(Vat- #{@product.vat.to_f}%"
           = "Sales Tax - #{@product.sales_tax.to_f}%"
           = "Service Tax -#{@product.service_tax.to_f}%)"
-          %tax_div{:style => 'float:right;'}
+          %tax_div{:style => 'float:right;margin-left:-20px;'}
             Tax :
             %input{:style => 'width:60px;text-align:right;', :id=>"tax"}(type="text" name="number" value=0  readonly = true)          
           %br
           %br
-        .pol{:style => 'width:600px;padding-top:10px;'}
+        .bottom_menu{:style => 'width:560px;padding-top:5px;'}
           = link_to "Check the Orders" , '', :id => 'checkout', :product_id => @product.id, :class => [:btn, :"btn-success"]
           %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
-          %toatl{:style => 'float:right;'}
+          %toatl{:style => 'float:right;margin-left:-20px;'}
             Total :
             %input{:style => 'width:60px;display:none;', :id=>"sum"}(type="text" name="number" value=0  readonly = true)        
             %input{:style => 'width:60px;text-align:right;', :id=>"total"}(type="text" name="number" value=0  readonly = true)         

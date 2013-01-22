@@ -102,3 +102,9 @@ body .content-wrapper {
 
 .ui-dialog .ui-dialog-buttonset {
 }
+
+
+.table-no_bordered th,
+.table-no_bordered td {
+  border: 0px !important;
+}
