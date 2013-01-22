@@ -5,15 +5,16 @@
     .clearfix
   .myrow.details-box
     .logo
-      = image_tag(@product.store.logo_url, :width => '256')
+      = link_to @product do
+        = image_tag @product.store.logo_url, :width => '256'
     .name
       = @product.name
     .menu_area
       Select From the Menu 
       .description
-        #pagination_referrals
-          = will_paginate(@items)
         .pol{:style => 'width:600px;'}
+          #pagination_referrals
+            = will_paginate(@items)
           %div
             %table.table.table
               %tr
@@ -28,27 +29,28 @@
                   %td
                     = item.price.to_f
                   %td
-                    %input{:style => 'width:18px;', :item_id=>"#{item.id}", :id => "quantity_#{item.id}",:class =>"quantity", :price => "#{item.price.to_f}", :item_ids => "#{@items.collect(&:id)}", :tax => @product.vat.to_f+@product.service_tax.to_f+@product.sales_tax.to_f }(type="text" name="number" value=0 ) 
+                    %input{:style => 'width:38px;text-align:right;', :item_id=>"#{item.id}", :id => "quantity_#{item.id}",:class =>"quantity", :price => "#{item.price.to_f}", :item_ids => "#{@items.collect(&:id)}", :tax => @product.vat.to_f+@product.service_tax.to_f+@product.sales_tax.to_f }(type="text" name="number" value=0 ) 
                   %td
-                    %input{:style => 'width:50px;', :id=>"amount_#{item.id}", :class =>"amount"}(type="text" name="number" value=0  readonly = true)
+                    %input{:style => 'width:60px;text-align:right;', :id=>"amount_#{item.id}", :class =>"amount"}(type="text" name="number" value=0  readonly = true)
 
-        - hash = @items.collect(&:id)
-        = hidden_field :pollo,:abc, :value => hash
+          - hash = @items.collect(&:id)
+          = hidden_field :pollo,:abc, :value => hash
 
-        %b
           = "(Vat- #{@product.vat.to_f}%"
           = "Sales Tax - #{@product.sales_tax.to_f}%"
           = "Service Tax -#{@product.service_tax.to_f}%)"
-          Tax :
-          %input{:style => 'width:60px;', :id=>"tax"}(type="text" name="number" value=0  readonly = true)          
-
-        %br
-        = link_to "Check the Orders" , '', :id => 'checkout', :product_id => @product.id, :class => [:btn, :"btn-success"]
-        %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
-        %toatl{:style => 'padding-left:210px;'}
-        Total :
-        %input{:style => 'width:60px;display:none;', :id=>"sum"}(type="text" name="number" value=0  readonly = true)        
-        %input{:style => 'width:60px;', :id=>"total"}(type="text" name="number" value=0  readonly = true)         
+          %tax_div{:style => 'float:right;'}
+            Tax :
+            %input{:style => 'width:60px;text-align:right;', :id=>"tax"}(type="text" name="number" value=0  readonly = true)          
+          %br
+          %br
+        .pol{:style => 'width:600px;padding-top:10px;'}
+          = link_to "Check the Orders" , '', :id => 'checkout', :product_id => @product.id, :class => [:btn, :"btn-success"]
+          %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
+          %toatl{:style => 'float:right;'}
+            Total :
+            %input{:style => 'width:60px;display:none;', :id=>"sum"}(type="text" name="number" value=0  readonly = true)        
+            %input{:style => 'width:60px;text-align:right;', :id=>"total"}(type="text" name="number" value=0  readonly = true)         
 .row.related-products
   - @product.related_products.each do |rp|
     .rel-product
