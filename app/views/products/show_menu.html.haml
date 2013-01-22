@@ -31,21 +31,24 @@
                     %input{:style => 'width:18px;', :item_id=>"#{item.id}", :id => "quantity_#{item.id}",:class =>"quantity", :price => "#{item.price.to_f}", :item_ids => "#{@items.collect(&:id)}", :tax => @product.vat.to_f+@product.service_tax.to_f+@product.sales_tax.to_f }(type="text" name="number" value=0 ) 
                   %td
                     %input{:style => 'width:50px;', :id=>"amount_#{item.id}", :class =>"amount"}(type="text" name="number" value=0  readonly = true)
-      #star
-        .myrow.rating
-          %span{:style => 'width:15%'} 
-            - hash = @items.collect(&:id)
-            = hidden_field :pollo,:abc, :value => hash
-            = link_to "Check the Orders" , '', :id => 'checkout', :product_id => @product.id, :class => [:btn, :"btn-success"]
-            %b
-              = "(Vat- #{@product.vat.to_f}%"
-              = "Sales Tax - #{@product.sales_tax.to_f}%"
-              = "Service Tax -#{@product.service_tax.to_f}%)"
-              Total :
-              %input{:style => 'width:35px;', :id=>"total"}(type="text" name="number" value=0  readonly = true) 
-        
-        %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
 
+        - hash = @items.collect(&:id)
+        = hidden_field :pollo,:abc, :value => hash
+
+        %b
+          = "(Vat- #{@product.vat.to_f}%"
+          = "Sales Tax - #{@product.sales_tax.to_f}%"
+          = "Service Tax -#{@product.service_tax.to_f}%)"
+          Tax :
+          %input{:style => 'width:60px;', :id=>"tax"}(type="text" name="number" value=0  readonly = true)          
+
+        %br
+        = link_to "Check the Orders" , '', :id => 'checkout', :product_id => @product.id, :class => [:btn, :"btn-success"]
+        %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
+        %toatl{:style => 'padding-left:210px;'}
+        Total :
+        %input{:style => 'width:60px;display:none;', :id=>"sum"}(type="text" name="number" value=0  readonly = true)        
+        %input{:style => 'width:60px;', :id=>"total"}(type="text" name="number" value=0  readonly = true)         
 .row.related-products
   - @product.related_products.each do |rp|
     .rel-product

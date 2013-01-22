@@ -20,19 +20,22 @@ Selected Menu
             %td
               %input{:style => 'width:50px;', :id=>"amount_#{item.id}", :class =>"amount", :value => @quantities[item.id] * item.price.to_f }(type="text" name="number" readonly = true)
             - sum = sum + (@quantities[item.id] * item.price.to_f)
-#star
-  .myrow.rating
-    %span{:style => 'width:15%'} 
-      - hash = @items.collect(&:id)
-      = hidden_field :pollo,:abc, :value => hash
-      = link_to "Email the Bill" , '', :id => 'email_me', :class => [:btn, :"btn-success"],:product_id => @product.id
-      = link_to "Cancel" , '', :id => 'cancel', :class => [:btn, :"btn-success"]
-      %b
-        = "(Vat- #{@product.vat.to_f}%"
-        = "S Tax - #{@product.sales_tax.to_f}%"
-        = "Ser Tax -#{@product.service_tax.to_f}%)"
-        Total :
-        - sum = sum + sum *(@product.vat.to_f + @product.sales_tax.to_f + @product.service_tax.to_f)/100
-        %input{:style => 'width:35px;', :id=>"total", :value => sum}(type="text" name="number" readonly = true) 
-  
+
+  - hash = @items.collect(&:id)
+  = hidden_field :pollo,:abc, :value => hash
+  %b
+    = "(Vat- #{@product.vat.to_f}%"
+    = "S Tax - #{@product.sales_tax.to_f}%"
+    = "Ser Tax -#{@product.service_tax.to_f}%)"
+    Tax :
+    - tax = sum *(@product.vat.to_f + @product.sales_tax.to_f + @product.service_tax.to_f)/100
+    - total = sum + tax
+    %input{:style => 'width:60px;', :id=>"tax", :value => tax}(type="text" name="number" readonly = true) 
+  %br
+  = link_to "Email the Bill" , '', :id => 'email_me', :class => [:btn, :"btn-success"],:product_id => @product.id
+  = link_to "Cancel" , '', :id => 'cancel', :class => [:btn, :"btn-success"]  
   %input{:style => 'display:none;', :id=>"count"}(type="text" name="number" value=0  readonly = true)
+  %toatl{:style => 'padding-left:104px;'}
+  Total :
+  %input{:style => 'width:60px;display:none;', :id=>"sum", :value => sum}(type="text" name="number" readonly = true)        
+  %input{:style => 'width:60px;', :id=>"total", :value => total}(type="text" name="number" value=0  readonly = true)  

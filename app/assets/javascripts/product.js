@@ -131,21 +131,54 @@ $('#email_me').live('submit', function(event) {
 });
 
 
+$('.quantity').live('keyup', function(event) {
+        var items = $(this).attr('item_ids');
+        var quan = parseFloat($(this).val());
+        if (isNaN(quan)){
+
+        }
+        else{
+            var amount_id = "amount_" + $(this).attr('item_id');
+            var tax = parseFloat($(this).attr('tax'));
+            var sum = parseFloat($('#sum').val());
+            var old_value = parseFloat($('#'+amount_id).val());
+            var price = parseFloat($(this).attr('price'));
+            var amt = quan * price
+            var new_sum = sum + amt - old_value
+            var tax_amt = new_sum * tax/100;
+            $('#tax').val(tax_amt);
+            $('#sum').val(new_sum);
+            $('#'+amount_id).val(quan * price);
+            $('#total').val(new_sum+tax_amt);
+        }
+
+});
+
 $('.quantity').live('blur', function(event) {
         var items = $(this).attr('item_ids');
         var quan = parseFloat($(this).val());
-        var amount_id = "amount_" + $(this).attr('item_id');
-        var tax = parseFloat($(this).attr('tax'));
-        var sum = parseFloat($('#total').val());
-        var old_value = parseFloat($('#'+amount_id).val());
-        var price = parseFloat($(this).attr('price'));
-        var amt = quan * price
-        var new_sum = sum + (amt + amt * tax/100) - old_value
-        $('#'+amount_id).val(quan * price);
-        if (new_sum != sum){
-            $('#total').val(new_sum);
+        if (isNaN(quan)){
+            $(this).val(0);
+            quan = 0;
+            var amount_id = "amount_" + $(this).attr('item_id');
+            var tax = parseFloat($(this).attr('tax'));
+            var sum = parseFloat($('#sum').val());
+            var old_value = parseFloat($('#'+amount_id).val());
+            var price = parseFloat($(this).attr('price'));
+            var amt = quan * price
+            var new_sum = sum + amt - old_value
+            var tax_amt = new_sum * tax/100;
+            $('#tax').val(tax_amt);
+            $('#sum').val(new_sum);
+            $('#'+amount_id).val(quan * price);
+            $('#total').val(new_sum+tax_amt);  
         }
+            
+    });    
 
+$('.quantity').live('focus', function(event) {
+    // alert('hi');
+    $(this).val('');
 });
 
 $('#checkout').live('click', function(event) {
