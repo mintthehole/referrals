@@ -24,7 +24,7 @@
                 %th
                   .name Price
                 %th 
-                  .name No
+                  .name Qnty
                 %th 
                   .name Amount
               - @items.each do |item|
@@ -36,7 +36,7 @@
                   %td
                     = item.price.to_f
                   %td
-                    %input{:style => 'width:38px;text-align:right;', :item_id=>"#{item.id}", :id => "quantity_#{item.id}",:class =>"quantity", :price => "#{item.price.to_f}", :item_ids => "#{@items.collect(&:id)}", :tax => @product.vat.to_f+@product.service_tax.to_f+@product.sales_tax.to_f }(type="text" name="number" value=0 ) 
+                    %input{:style => 'width:50px;text-align:right;', :item_id=>"#{item.id}", :id => "quantity_#{item.id}",:class =>"quantity", :price => "#{item.price.to_f}", :item_ids => "#{@items.collect(&:id)}", :tax => @product.vat.to_f+@product.service_tax.to_f+@product.sales_tax.to_f }(type="text" name="number" value=0 ) 
                   %td
                     %input{:style => 'width:60px;text-align:right;', :id=>"amount_#{item.id}", :class =>"amount"}(type="text" name="number" value=0  readonly = true)
         .bottom_menu{:style => 'width:560px;'}

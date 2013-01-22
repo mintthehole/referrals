@@ -5,7 +5,8 @@
     .clearfix
   .myrow.details-box
     .logo
-      = image_tag(@product.store.logo_url, :width => '256')
+      = link_to @product do
+        = image_tag @product.store.logo_url, :size => "204x100"
     .name
       = @product.name
     .description

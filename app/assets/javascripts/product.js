@@ -183,6 +183,7 @@ $('.quantity').live('focus', function(event) {
 
 $('#checkout').live('click', function(event) {
     event.preventDefault();
+    $(this).attr("disabled","disabled");
     var jsonObj = [];
     var hash = $('#pollo_abc').val();
     var pol = JSON.parse(hash);
