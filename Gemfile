@@ -15,6 +15,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'exotel'
 gem 'activerecord-oracle_enhanced-adapter'
 gem 'ruby-oci8'
 gem 'jquery-rails'

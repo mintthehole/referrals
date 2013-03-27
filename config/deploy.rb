@@ -28,7 +28,7 @@ end
 aws_staging :ec2_staging do
   set :application, "referrals"
   set :deploy_to, "/rails/apps/referrals"
-  set :location, "staging.justbooksclc.com"
+  set :location, "107.23.108.186"
 end
 
 namespace :deploy do

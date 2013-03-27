@@ -2,6 +2,10 @@ require 'will_paginate/array'
 
 class ProductsController < ApplicationController
   
+  def index
+    @products = Product.all
+  end
+
   def show_campaign
     @product = Product.find_by_id(params[:product_id])
   end
