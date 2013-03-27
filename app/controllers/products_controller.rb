@@ -3,7 +3,7 @@ require 'will_paginate/array'
 class ProductsController < ApplicationController
   
   def index
-    @products = Product.all
+    @products = Product.find(:all, :conditions => ['store_id = ?', Store::STRATA_STORE])
   end
 
   def show_campaign
